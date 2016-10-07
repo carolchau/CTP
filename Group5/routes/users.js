@@ -7,22 +7,22 @@ router.get('/', function(req, res, next) {
 });
 
 /* GET login. */
-router.get('/users/login', function(req, res, next){
+router.get('/login', function(req, res, next){
   res.render('users/login');
 });
 
 /* POST login. */
-router.post('/users/login', function(req, res, next){
+router.post('/login', function(req, res, next){
 
 });
 
 /* GET register. */
-router.get('/users/signup', function(req, res, next){
-
+router.get('/register', function(req, res, next){
+  res.render('users/register');
 });
 
 /* POST register. */
-router.post('/users/signup', function(req, res, next){
+router.post('/register', function(req, res, next){
 
 });
 
