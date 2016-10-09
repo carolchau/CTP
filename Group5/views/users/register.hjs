@@ -7,13 +7,13 @@
   <body>
     <h1> Register for Group5 </h1>
 
-    <form id="register" action="" method="">
+    <form id="register" action="/users/register" method="post">
       <p> First name: <input type="text" name="firstname" placeholder="" required></p>
       <p> Last name:  <input type="text" name="lastname" placeholder="" required></p>
       <p> Email:  <input type="email" name="email" placeholder="" required></p>
       <p> Password:  <input type="password" name="password" placeholder="" required></p>
-      <p> Password Again:  <input type="password" name="passwordAgain" placeholder="" required></p>
-      <input type="submit" value="Submit">
+      <p> Confirm Password:  <input type="password" name="passwordConfirm" placeholder="" required></p>
+      <input type="submit" name="submit" value="Submit">
     </form>
 
   </body>
