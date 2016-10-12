@@ -8,7 +8,7 @@ var expressValidator  = require('express-validator');
 var flash = require('connect-flash');
 var session = require('express-session');
 var passport = require('passport');
-var passportStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var mongo = require('mongodb');
 var mongoose = require('mongoose');
 var credentials = require('./credentials.js');
@@ -112,6 +112,5 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
-
 
 module.exports = app;
