@@ -3,9 +3,14 @@
   <head>
     <title> Register for Group5 </title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
   </head>
   <body>
     <h1> Register for Group5 </h1>
+
+    {{#errors}}
+        <div class="alert alert-danger"> {{msg}} </div>
+    {{/errors}}
 
     <form id="register" action="/users/register" method="post">
       <p> First name: <input type="text" name="firstname" placeholder="" required></p>

@@ -1,7 +1,18 @@
 var mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost');
+var options = {
+  server: {
+    socketOptions: { keepAlive: 1 }
+  }
+};
 
-var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
+switch(app.get('env')) {
+  case 'development':
+    mongoose.connect(credentials.mongo.development.connectionString, options);
+    break;
+  case 'production':
+    mongoose.connect(credentials.mongo.production.connectionString, options);
+    break;
+  default:
+    throw new Error('Unknown execution environment: ' + app.get('env'));
+}
