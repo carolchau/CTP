@@ -1,12 +1,9 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title> Login to Group5 </title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-  </head>
-  <body>
+{{<layout}}
+  {{$content}}
 
+    <h1> Login to Group5 </h1>
+
+    <!-- Messages -->
     {{#success_msg}}
         <div class="alert alert-success"> {{success_msg}} </div>
     {{/success_msg}}
@@ -17,16 +14,13 @@
         <div class="alert alert-danger"> {{error}} </div>
     {{/error}}
 
-
-    <h1> Login to Group5 </h1>
-
     <form id="login" action="/users/login" method="post">
       <p> Email:  <input type="email" name="email" placeholder="" required></p>
-      <p> Password:  <input type="password" name="password" placeholder="" required></p>
+      <p> Password: <input type="password" name="password" placeholder="" required></p>
       <input type="submit" name="submit" value="Submit">
     </form>
 
     <p> Don't have an account? <a href="register"> Sign Up Now! </a> </p>
 
-  </body>
-</html>
+  {{/content}}
+{{/layout}}

@@ -8,22 +8,22 @@ var User = require('../models/User');
 
 /* GET login. */
 router.get('/login', function(req, res, next){
-  res.render('login');
+  res.render('login',  {
+    title: 'Login to Group5',
+    partials: {
+      layout: 'layout'
+    }
+  });
 });
-
-/* POST login.
-router.post('/login', function(req, res, next){
-
-});
-*/
 
 /* GET register. */
 router.get('/register', function(req, res, next){
-  //var notice = req.cookie.notice;
-
-  //res.render('register', { notice: notice });
-
-  res.render('register');
+  res.render('register',  {
+    title: 'Register for Group5',
+    partials: {
+      layout: 'layout'
+    }
+  });
 });
 
 /* POST register. */
@@ -109,6 +109,7 @@ passport.use('local', new LocalStrategy({
   }
 ));
 
+/* POST login. */
 router.post('/login',
   passport.authenticate('local', {
     successRedirect: '/',

@@ -4,7 +4,12 @@ var User = require('../models/User');
 
 // Get Homepage
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  res.render('index', {
+    title: 'Group5',
+    partials: {
+      layout: 'layout'
+    }
+  });
 });
 
 router.post('/register', function(req, res) {

@@ -1,16 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{ title }}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel='stylesheet' href='/stylesheets/bootstrap.css' />
-  </head>
-  <body>
+{{<layout}}
+  {{$content}}
+
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
 
-    <!-- TO DO : put a Google Map here -->
-
-
-  </body>
-</html>
+    {{/content}}
+{{/layout}}
