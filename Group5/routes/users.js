@@ -119,6 +119,40 @@ router.post('/login',
   function(req, res) {
     res.redirect('/');
     console.log('here');
+  }
+);
+
+
+
+/* POST logout. */
+router.get('/logout', function(req, res){
+  req.logout();
+
+  req.flash('success_msg', 'You are logged out.');
+
+  res.redirect('/users/login');
+});
+
+
+/* GET profile */
+router.get('/profile', ensureAuthenticated, function(req, res, next){
+  res.render('profile',  {
+    title: 'Your Profile',
+    partials: {
+      layout: 'layout'
+    }
   });
+});
+
+
+function ensureAuthenticated(req, res, next) {
+  if (res.isAuthenticated() ){
+    //return next();
+    res.redirect('/');
+  } else {
+    req.flash('error_msg', "You are not logged in. ");
+    res.redirect('/');
+  }
+}
 
 module.exports = router;

@@ -70,11 +70,12 @@ app.use(expressValidator({
 // Connect Flash
 app.use(flash());
 
-// Global Variables for Flash messages
+// Global Variables
 app.use(function(req, res, next){
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
   res.locals.error = req.flash('error'); // for Passport
+  res.locals.user = req.user || null;
   next();
 });
 
