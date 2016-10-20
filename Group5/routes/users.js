@@ -5,7 +5,6 @@ var LocalStrategy = require('passport-local').Strategy;
 
 var User = require('../models/User');
 
-
 /* GET login. */
 router.get('/login', function(req, res, next){
   res.render('login',  {
@@ -65,15 +64,6 @@ router.post('/register', function(req, res, next){
     res.redirect('/users/login');
   }
 
-  /*
-  // Handler: Password does not match
-  if (password != passwordConfirm) {
-    res.cookie('notice', 'Passwords does not match.');
-    return res.redirect('/users/register');
-  }
-
-  res.status(200).json({email: email, password: password });
-  */
 });
 
 passport.serializeUser(function(user, done) {
@@ -122,7 +112,6 @@ router.post('/login',
   }
 );
 
-
 /* POST logout. */
 router.get('/logout', function(req, res){
   req.logout();
@@ -148,9 +137,5 @@ router.get('/profile', passport.redirectIfNotLoggedIn('/'), function(req, res, n
 
 passport.redirectIfLoggedIn = (route) =>
   (req, res, next) => (req.user ? res.redirect(route) : next());
-
-passport.redirectIfNotLoggedIn = (route) =>
-  (req, res, next) => (req.user ? next() : res.redirect(route));
-
 
 module.exports = router;
