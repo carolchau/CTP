@@ -35,14 +35,18 @@
         <nav>
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/">Home</a></li>
-            <li role="presentation"><a href="/users/login">Login</a></li>
-            <li role="presentation"><a href="/users/register">Register</a></li>
-            <li role="presentation"><a href="/users/logout">Logout</a></li>
+            {{#user}}
+              <li role="presentation"><a href="/users/profile">Profile</a></li>
+              <li role="presentation"><a href="/users/logout">Logout</a></li>
+            {{/user}}
+            {{^user}}
+              <li role="presentation"><a href="/users/login">Login</a></li>
+              <li role="presentation"><a href="/users/register">Register</a></li>
+            {{/user}}
           </ul>
         </nav>
         <h3 class="text-muted"> Group5 </h3>
       </div>
-
 
       <div class="row">
         <div class="col-lg-12">

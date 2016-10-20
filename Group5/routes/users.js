@@ -119,6 +119,38 @@ router.post('/login',
   function(req, res) {
     res.redirect('/');
     console.log('here');
+  }
+);
+
+
+/* POST logout. */
+router.get('/logout', function(req, res){
+  req.logout();
+
+  req.flash('success_msg', 'You are logged out.');
+
+  res.redirect('/users/login');
+});
+
+passport.redirectIfNotLoggedIn = (route) =>
+  (req, res, next) => (req.user ? next() : res.redirect(route));
+
+/* GET profile */
+router.get('/profile', passport.redirectIfNotLoggedIn('/'), function(req, res, next) {
+  res.render('profile',  {
+    title: 'Your Profile',
+    user: req.user,
+    partials: {
+      layout: 'layout'
+    }
   });
+});
+
+passport.redirectIfLoggedIn = (route) =>
+  (req, res, next) => (req.user ? res.redirect(route) : next());
+
+passport.redirectIfNotLoggedIn = (route) =>
+  (req, res, next) => (req.user ? next() : res.redirect(route));
+
 
 module.exports = router;

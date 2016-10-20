@@ -1,18 +1,18 @@
 {{<layout}}
   {{$content}}
 
+  <!-- Messages -->
+  {{#success_msg}}
+      <div class="alert alert-success"> {{success_msg}} </div>
+  {{/success_msg}}
+  {{#error_msg}}
+      <div class="alert alert-danger"> {{error_msg}} </div>
+  {{/error_msg}}
+  {{#error}}
+      <div class="alert alert-danger"> {{error}} </div>
+  {{/error}}
+  
     <h1> Login to Group5 </h1>
-
-    <!-- Messages -->
-    {{#success_msg}}
-        <div class="alert alert-success"> {{success_msg}} </div>
-    {{/success_msg}}
-    {{#error_msg}}
-        <div class="alert alert-danger"> {{error_msg}} </div>
-    {{/error_msg}}
-    {{#error}}
-        <div class="alert alert-danger"> {{error}} </div>
-    {{/error}}
 
     <form id="login" action="/users/login" method="post">
       <p> Email:  <input type="email" name="email" placeholder="" required></p>

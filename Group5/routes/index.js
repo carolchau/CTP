@@ -1,6 +1,5 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/User');
 
 function initMap() {
   var map = new google.maps.Map(document.getElementById('map'), {
