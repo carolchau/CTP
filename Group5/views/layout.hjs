@@ -1,4 +1,26 @@
 <!DOCTYPE html>
+<!-- Google Maps Javascript API -->
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBp64ubaA3-Xw9zBSxg9pO1MUR-_C_qzVY&v=3&callback=initMap"></script>
+
+<script>
+  function initMap() {
+    var myLatLng = {lat: 40.7541, lng: -73.9934};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: myLatLng,
+    });
+
+    var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Wework'
+    });
+
+    var infoWindow = new google.maps.InfoWindow({map: map});
+  }
+</script>
+
 <html>
   <head>
     <title>{{title}}</title>
