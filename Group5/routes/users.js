@@ -123,7 +123,6 @@ router.post('/login',
 );
 
 
-
 /* POST logout. */
 router.get('/logout', function(req, res){
   req.logout();
@@ -133,25 +132,25 @@ router.get('/logout', function(req, res){
   res.redirect('/users/login');
 });
 
+passport.redirectIfNotLoggedIn = (route) =>
+  (req, res, next) => (req.user ? next() : res.redirect(route));
 
 /* GET profile */
-router.get('/profile', ensureAuthenticated, function(req, res, next){
+router.get('/profile', passport.redirectIfNotLoggedIn('/'), function(req, res, next) {
   res.render('profile',  {
     title: 'Your Profile',
+    user: req.user,
     partials: {
       layout: 'layout'
     }
   });
 });
 
+passport.redirectIfLoggedIn = (route) =>
+  (req, res, next) => (req.user ? res.redirect(route) : next());
 
-function ensureAuthenticated(req, res, next) {
-  if (res.isAuthenticated() ){
-    return next();
-  } else {
-    req.flash('error_msg', "You are not logged in. ");
-    res.redirect('/');
-  }
-}
+passport.redirectIfNotLoggedIn = (route) =>
+  (req, res, next) => (req.user ? next() : res.redirect(route));
+
 
 module.exports = router;
