@@ -7,7 +7,7 @@ function initMap() {
     center: {lat: 40.7541, lng: 73.9934}
   });
   var infoWindow = new google.maps.InfoWindow({map: map});
-}
+};
 
 // Get Homepage
 router.get('/', function(req, res, next) {
