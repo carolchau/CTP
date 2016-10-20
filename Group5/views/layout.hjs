@@ -14,7 +14,7 @@
           <ul class="nav nav-pills pull-right">
             <li role="presentation"><a href="/">Home</a></li>
             {{#user}}
-              <li role="presentation"><a href="/users/logout">Profile</a></li>
+              <li role="presentation"><a href="/users/profile">Profile</a></li>
               <li role="presentation"><a href="/users/logout">Logout</a></li>
             {{/user}}
             {{^user}}

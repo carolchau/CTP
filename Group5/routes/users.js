@@ -147,8 +147,7 @@ router.get('/profile', ensureAuthenticated, function(req, res, next){
 
 function ensureAuthenticated(req, res, next) {
   if (res.isAuthenticated() ){
-    //return next();
-    res.redirect('/');
+    return next();
   } else {
     req.flash('error_msg', "You are not logged in. ");
     res.redirect('/');
