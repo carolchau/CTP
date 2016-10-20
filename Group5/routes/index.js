@@ -2,6 +2,14 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/User');
 
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: {lat: 40.7541, lng: 73.9934}
+  });
+  var infoWindow = new google.maps.InfoWindow({map: map});
+}
+
 // Get Homepage
 router.get('/', function(req, res, next) {
   res.render('index', {
@@ -10,6 +18,7 @@ router.get('/', function(req, res, next) {
       layout: 'layout'
     }
   });
+  initMap();
 });
 
 router.post('/register', function(req, res) {

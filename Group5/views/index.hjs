@@ -1,8 +1,22 @@
+<script>
+  function initMap() {
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 16,
+      center: {lat: 40.7541, lng: -73.9934},
+    });
+    var infoWindow = new google.maps.InfoWindow({map: map});
+  }
+</script>
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?libraries=geometry&key=AIzaSyBp64ubaA3-Xw9zBSxg9pO1MUR-_C_qzVY&v=3&callback=initMap"></script>
+
 {{<layout}}
   {{$content}}
 
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
+    
+    <div id="map" align="center" style="height:600px; width:90%;"></div>
 
     {{/content}}
 {{/layout}}
