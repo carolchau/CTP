@@ -1,0 +1,43 @@
+<script>
+  navigator.geolocation.getCurrentPosition(function(x){ response = x });
+  console.log(response)
+  document.getElementById('longitude').value = response['coords']['longitude']
+  document.getElementById('latitude').value = response['coords']['latitude']
+</script>
+
+{{<layout}}
+  {{$content}}
+
+    <h1> Post a Review for Group5 </h1>
+
+    {{#errors}}
+        <div class="alert alert-danger"> {{msg}} </div>
+    {{/errors}}
+
+    <form id="newReview" action="/review" method="post">
+      <p> Title: <input type="text" name="title" placeholder="" required></p>
+
+      <p> Longitude: <input type="number" name="longitude" required></p>
+
+      <p> Latitude: <input type="number" name="latitude" required></p>
+
+      <p> WiFi: <input type="checkbox" name="Wifi"></p>
+
+      <p> Coffee: <input type="checkbox" name="coffee"></p>
+
+      <p> Snacks: <input type="checkbox" name="snacks"></p>
+
+      <p> Tables: <input type="checkbox" name="tables"></p>
+
+      <p> Bathroom: <input type="checkbox" name="bathroom"></p>
+
+      <p> Outlets: <input type="checkbox" name="outlets"></p>
+
+      <p> Noisy: <input type="checkbox" name="noisy"></p>
+
+      <input type="submit" name="submit" value="Submit">
+    </form>
+
+  {{/content}}
+{{/layout}}
+
