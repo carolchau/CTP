@@ -4,10 +4,19 @@
 
 <script>
   function initMap() {
+    var myLatLng = {lat: 40.7541, lng: -73.9934};
+
     var map = new google.maps.Map(document.getElementById('map'), {
       zoom: 16,
-      center: {lat: 40.7541, lng: -73.9934},
+      center: myLatLng,
     });
+
+    var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+          title: 'Wework'
+    });
+
     var infoWindow = new google.maps.InfoWindow({map: map});
   }
 </script>
