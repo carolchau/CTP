@@ -16,3 +16,5 @@ ASK PERMISSION TO TAKE USER GEOLOCATION
 might want to add these to reviews & users:
 created: {type: Date, default: Date.now}
 updated: {type: Date, default: Date.now}
+
+refactor code to ES6
