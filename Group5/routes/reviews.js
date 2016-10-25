@@ -1,63 +1,55 @@
 var express = require('express');
 var router = express.Router();
 
-var User = require('../models/Review');
+var Review = require('../models/Review');
 
 /* GET review */
 router.get('/', function(req, res, next){
-  console.log("hello");
+  res.render('review', {
+    title: 'Post a new Review to Group5',
+    partials: {
+      layout: 'layout'
+    }
+  });
+  console.log("reviews home page");
 });
 
 /* POST new. */
 router.post('/new', function(req, res, next){
-  var title = req.param('title');
-  var lng = parseInt(req.param('longitude'));
-  var lat = parseInt(req.param('latitude'));
-  var coffee = req.param('coffee');
-  var wifi = req.param('wifi');
-  var snacks = req.param('snacks');
-  var tables = req.param('tables');
-  var bathroom = req.param('bathroom');
-  var outlets = req.param('outlets');
-  var noisy = req.param('noisy');
+  var title = req.params.title;
+  var lng = parseInt(req.params.longitude);
+  var lat = parseInt(req.params.latitude);
+  var coffee = req.params.coffee;
+  var wifi = req.params.wifi;
+  var snacks = req.params.snacks;
+  var tables = req.params.tables;
+  var bathroom = req.params.bathroom;
+  var outlets = req.params.outlets;
+  var noisy = req.params.noisy;
 
-  // var errors = req.validationErrors();
-
+  req.checkBody('title', 'Title is required.').notEmpty();
+  req.checkBody('longitude', 'Longitude is required.').notEmpty();
+  req.checkBody('latitude', 'Latitude is required.').notEmpty();
+  
   var newReview = new Review({
-  'title': title,
-  'loc': {
-    type: [lng, lat],  // [<longitude>, <latitude>]
-    index: '2d'        // create the geospatial index
-  },
-  'wifi': wifi,
-  'coffee': coffee,
-  'snacks': snacks,
-  'tables': tables,
-  'bathroom': bathroom,
-  'outlets': outlets,
-  'noisy': noisy
+    'title': title,
+    'loc': {
+      type: [lng, lat],  // [<longitude>, <latitude>]
+      index: '2d'        // create the geospatial index
+    },
+    'wifi': wifi,
+    'coffee': coffee,
+    'snacks': snacks,
+    'tables': tables,
+    'bathroom': bathroom,
+    'outlets': outlets,
+    'noisy': noisy
+  });
+
+  console.log(newReview);
+
+  req.flash('success_msg', 'You have posted a new review!');
+  // res.redirect('/');
 });
 
-  // If there are no errors, create new User
-  if (errors) {
-    res.render('register', {
-      errors:errors
-    });
-  } else {
-    var newUser = new User({
-      firstname: firstname,
-      lastname: lastname,
-      email: email,
-      password: password
-    });
-
-    User.createUser(newUser, function(err, User){
-      if (err) throw err;
-      console.log(err);
-    });
-
-    req.flash('success_msg', 'You are registered and can now login!');
-    res.redirect('/users/login');
-  }
-
-});
+module.exports = router;

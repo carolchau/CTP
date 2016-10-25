@@ -20,7 +20,6 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var reviews = require('./routes/reviews');
 
-
 // Initialize App
 var app = express();
 
@@ -84,7 +83,7 @@ app.use(function(req, res, next){
 // Map Routes
 app.use('/', routes);
 app.use('/users', users);
-// app.use('/reviews', reviews);
+app.use('/reviews', reviews);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

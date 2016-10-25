@@ -1,9 +1,21 @@
 <script>
-  navigator.geolocation.getCurrentPosition(function(x){ response = x });
-  console.log(response)
-  document.getElementById('longitude').value = response['coords']['longitude']
-  document.getElementById('latitude').value = response['coords']['latitude']
+function getLocation() {
+  console.log("inside getLocation");
+  if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition);
+  } else {
+      alert("This browser does not support HTML5 geolocation!");
+  }
+}
+
+function setPosition(position) {
+  var form = document.getElementById('newReview');
+  form.longitude.value = position.coords.longitude;
+  form.latitude.value = position.coords.latitude;
+}
 </script>
+
+<body onload="getLocation()"/>
 
 {{<layout}}
   {{$content}}
@@ -14,14 +26,14 @@
         <div class="alert alert-danger"> {{msg}} </div>
     {{/errors}}
 
-    <form id="newReview" action="/review" method="post">
+    <form id="newReview" action="/reviews/new" method="post">
       <p> Title: <input type="text" name="title" placeholder="" required></p>
 
-      <p> Longitude: <input type="number" name="longitude" required></p>
+      <p> Longitude: <input type="number" disabled="disabled" name="longitude" placeholder="acquiring longitude..." required></p>
 
-      <p> Latitude: <input type="number" name="latitude" required></p>
+      <p> Latitude: <input type="number" disabled="disabled" name="latitude" placeholder="acquiring latitude..." required></p>
 
-      <p> WiFi: <input type="checkbox" name="Wifi"></p>
+      <p> Free WiFi: <input type="checkbox" name="Wifi"></p>
 
       <p> Coffee: <input type="checkbox" name="coffee"></p>
 
