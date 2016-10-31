@@ -39,9 +39,8 @@ router.post('/register', function(req, res, next){
   req.checkBody('email', 'Email is invalid.').isEmail();
   req.checkBody('password', 'Password is required.').notEmpty();
   req.checkBody('passwordConfirm', 'Passwords do not match.').equals(req.body.password);
-
   var errors = req.validationErrors();
-
+  console.log(errors);
   // If there are no errors, create new User
   if (errors) {
     res.render('register', {
@@ -49,18 +48,23 @@ router.post('/register', function(req, res, next){
     });
   } else {
     var newUser = new User({
-      firstname: firstname,
-      lastname: lastname,
+      first_name: firstname,
+      last_name: lastname,
       email: email,
       password: password
     });
 
     User.createUser(newUser, function(err, User){
-      if (err) throw err;
-      console.log(err);
+      if (err) {
+        //throw err;
+        console.log(err);
+        req.flash('error_msg', 'A user with that email already exists!');
+      } else {
+        req.flash('success_msg', 'You are registered and can now login!');
+        
+      }
     });
 
-    req.flash('success_msg', 'You are registered and can now login!');
     res.redirect('/users/login');
   }
 
