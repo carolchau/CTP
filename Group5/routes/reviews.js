@@ -16,40 +16,45 @@ router.get('/', function(req, res, next){
 
 /* POST new. */
 router.post('/new', function(req, res, next){
-  var title = req.params.title;
-  var lng = parseInt(req.params.longitude);
-  var lat = parseInt(req.params.latitude);
-  var coffee = req.params.coffee;
-  var wifi = req.params.wifi;
-  var snacks = req.params.snacks;
-  var tables = req.params.tables;
-  var bathroom = req.params.bathroom;
-  var outlets = req.params.outlets;
-  var noisy = req.params.noisy;
+  var the_title = req.param('title');
+  var lng = parseFloat(req.param('longitude'));
+  var lat = parseFloat(req.param('latitude'));
+  var has_coffee = req.param('coffee');
+  var has_wifi = req.param('wifi');
+  var has_snacks = req.param('snacks');
+  var has_tables = req.param('tables');
+  var has_bathroom = req.param('bathroom');
+  var has_outlets = req.param('outlets');
+  var is_noisy = req.param('noisy');
 
   req.checkBody('title', 'Title is required.').notEmpty();
   req.checkBody('longitude', 'Longitude is required.').notEmpty();
   req.checkBody('latitude', 'Latitude is required.').notEmpty();
   
+  console.log('\n\n\n'+lng+' '+lat+'\n\n\n');
+
   var newReview = new Review({
-    'title': title,
-    'loc': {
-      type: [lng, lat],  // [<longitude>, <latitude>]
-      index: '2d'        // create the geospatial index
-    },
-    'wifi': wifi,
-    'coffee': coffee,
-    'snacks': snacks,
-    'tables': tables,
-    'bathroom': bathroom,
-    'outlets': outlets,
-    'noisy': noisy
+    title: the_title,
+    loc: [lng, lat],
+    wifi: has_wifi,
+    coffee: has_coffee,
+    snacks: has_snacks,
+    tables: has_tables,
+    bathroom: has_bathroom,
+    outlets: has_outlets,
+    noisy: is_noisy
   });
 
-  console.log(newReview);
-
-  req.flash('success_msg', 'You have posted a new review!');
-  // res.redirect('/');
+  newReview.save(function(err, newReview) {
+    if (err) {
+        //throw err;
+        console.log(err);
+        req.flash('error_msg', 'An error occurred posting the review');
+      } else {
+        req.flash('success_msg', 'You are have posted a new review!');
+      }
+  })
+  res.redirect('/');
 });
 
 module.exports = router;

@@ -2,11 +2,8 @@ var mongoose = require('mongoose');
 
 // Review Schema
 var ReviewSchema = mongoose.Schema({
-  title: String,
-  loc: {
-    type: [Number],  // [<longitude>, <latitude>]
-    index: '2d'      // create the geospatial index
-  },
+  title: { type: String, required: true },
+  loc: { type: [Number], index: '2d', required: true }, // must be [long, lat]
   coffee: Boolean,
   wifi: Boolean,
   snacks: Boolean,
@@ -20,6 +17,6 @@ var Review = mongoose.model('Review', ReviewSchema);
 module.exports = Review;
 
 // Creates Review
-module.exports.createReview = function(newReview, callback) {
-  
-}
+// module.exports.createReview = function(newReview, callback) {
+//   newReview.save(callback);
+// }
