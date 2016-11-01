@@ -1,6 +1,5 @@
 <script>
 function getLocation() {
-  console.log("inside getLocation");
   if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(setPosition);
   } else {

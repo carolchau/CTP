@@ -61,11 +61,11 @@ router.post('/register', function(req, res, next){
         req.flash('error_msg', 'A user with that email already exists!');
       } else {
         req.flash('success_msg', 'You are registered and can now login!');
-        
       }
+      res.redirect('/users/login');
     });
 
-    res.redirect('/users/login');
+    
   }
 
 });

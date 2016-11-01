@@ -1,6 +1,17 @@
 {{<layout}}
   {{$content}}
 
+    <!-- Messages -->
+    {{#success_msg}}
+      <div class="alert alert-success"> {{success_msg}} </div>
+    {{/success_msg}}
+    {{#error_msg}}
+        <div class="alert alert-danger"> {{error_msg}} </div>
+    {{/error_msg}}
+    {{#error}}
+        <div class="alert alert-danger"> {{error}} </div>
+    {{/error}}
+
     <h1>{{ title }}</h1>
     <p>Welcome to {{ title }}</p>
     

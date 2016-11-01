@@ -6,9 +6,7 @@ var UserSchema = mongoose.Schema({
   first_name: String,
   last_name: String,
   email: { type: String, index: { unique: true } },
-  password: {
-    type: String
-  },
+  password: { type: String },
   //sign_ins: [String],
   //reviews: [{type: String}] list of reviews
 });
