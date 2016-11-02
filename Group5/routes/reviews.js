@@ -49,7 +49,7 @@ router.post('/new', function(req, res, next){
     if (err) {
       //throw err;
       console.log(err);
-      req.flash('error_msg', 'An error occurred posting the review' + lng + lat);
+      req.flash('error_msg', 'An error occurred posting the review');
     } else {
       req.flash('success_msg', 'You have posted a new review!');
     }
