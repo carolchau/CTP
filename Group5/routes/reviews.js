@@ -17,15 +17,15 @@ router.get('/', function(req, res, next){
 /* POST new. */
 router.post('/new', function(req, res, next){
   var the_title = req.param('title');
-  var lng = parseFloat(req.param('longitude'));
-  var lat = parseFloat(req.param('latitude'));
-  var has_coffee = req.param('coffee');
-  var has_wifi = req.param('wifi');
-  var has_snacks = req.param('snacks');
-  var has_tables = req.param('tables');
-  var has_bathroom = req.param('bathroom');
-  var has_outlets = req.param('outlets');
-  var is_noisy = req.param('noisy');
+  var lng = req.body.longitude;
+  var lat = req.body.latitude;
+  var has_wifi = req.body.wifi ? true: false;
+  var has_coffee = req.body.coffee ? true: false;
+  var has_snacks = req.body.snacks ? true: false;
+  var has_tables = req.body.tables ? true: false;
+  var has_bathroom = req.body.bathroom ? true: false;
+  var has_outlets = req.body.outlets ? true: false;
+  var is_noisy = req.body.noisy ? true: false;
 
   req.checkBody('title', 'Title is required.').notEmpty();
   req.checkBody('longitude', 'Longitude is required.').notEmpty();
@@ -35,7 +35,7 @@ router.post('/new', function(req, res, next){
 
   var newReview = new Review({
     title: the_title,
-    loc: [lng, lat],
+    loc: [lng , lat],
     wifi: has_wifi,
     coffee: has_coffee,
     snacks: has_snacks,
@@ -45,17 +45,16 @@ router.post('/new', function(req, res, next){
     noisy: is_noisy
   });
 
-  newReview.save(function(err, Review) {
-      if (err) {
-          //throw err;
-          console.log(err);
-          req.flash('error_msg', 'An error occurred posting the review');
-        } else {
-          req.flash('success_msg', 'You are have posted a new review!');
-        }
-        res.redirect('/');
-      });
-
-});
+  newReview.save(function(err, newReview){
+    if (err) {
+      //throw err;
+      console.log(err);
+      req.flash('error_msg', 'An error occurred posting the review' + lng + lat);
+    } else {
+      req.flash('success_msg', 'You have posted a new review!');
+    }
+    res.redirect('/');
+  });
+}); // End Post New
 
 module.exports = router;

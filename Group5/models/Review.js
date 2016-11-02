@@ -15,8 +15,3 @@ var ReviewSchema = mongoose.Schema({
 
 var Review = mongoose.model('Review', ReviewSchema);
 module.exports = Review;
-
-// Creates Review
-// module.exports.createReview = function(newReview, callback) {
-//   newReview.save(callback);
-// }

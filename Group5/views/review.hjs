@@ -29,9 +29,9 @@ function setPosition(position) {
       <!--user should be gotten automatically-->
       <p> User: <input type="text" name="user" disabled="disabled" placeholder="{{user.email}}" required></p>
       <p> Title: <input type="text" name="title" placeholder="" required></p>
-      <p> Longitude: <input type="number" disabled="disabled" name="longitude" placeholder="acquiring longitude..." required></p>
-      <p> Latitude: <input type="number" disabled="disabled" name="latitude" placeholder="acquiring latitude..." required></p>
-      <p> Free WiFi: <input type="checkbox" name="Wifi"></p>
+      <p> Longitude: <input type="text" name="longitude" value="" placeholder="acquiring longitude..." required></p>
+      <p> Latitude: <input type="text" name="latitude" value= "" placeholder="acquiring latitude..." required></p>
+      <p> Free WiFi: <input type="checkbox" name="wifi"></p>
       <p> Coffee: <input type="checkbox" name="coffee"></p>
       <p> Snacks: <input type="checkbox" name="snacks"></p>
       <p> Tables: <input type="checkbox" name="tables"></p>
