@@ -30,7 +30,7 @@ router.post('/new', function(req, res, next){
   req.checkBody('title', 'Title is required.').notEmpty();
   req.checkBody('longitude', 'Longitude is required.').notEmpty();
   req.checkBody('latitude', 'Latitude is required.').notEmpty();
-  
+
   console.log('\n\n\n'+lng+' '+lat+'\n\n\n');
 
   var newReview = new Review({
@@ -45,16 +45,17 @@ router.post('/new', function(req, res, next){
     noisy: is_noisy
   });
 
-  newReview.save(function(err, newReview) {
-    if (err) {
-        //throw err;
-        console.log(err);
-        req.flash('error_msg', 'An error occurred posting the review');
-      } else {
-        req.flash('success_msg', 'You are have posted a new review!');
-      }
-  })
-  res.redirect('/');
+  newReview.save(function(err, Review) {
+      if (err) {
+          //throw err;
+          console.log(err);
+          req.flash('error_msg', 'An error occurred posting the review');
+        } else {
+          req.flash('success_msg', 'You are have posted a new review!');
+        }
+        res.redirect('/');
+      });
+
 });
 
 module.exports = router;

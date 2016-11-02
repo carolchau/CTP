@@ -26,24 +26,17 @@ function setPosition(position) {
     {{/errors}}
 
     <form id="newReview" action="/reviews/new" method="post">
+      <!--user should be gotten automatically-->
+      <p> User: <input type="text" name="user" disabled="disabled" placeholder="{{user.email}}" required></p>
       <p> Title: <input type="text" name="title" placeholder="" required></p>
-
       <p> Longitude: <input type="number" disabled="disabled" name="longitude" placeholder="acquiring longitude..." required></p>
-
       <p> Latitude: <input type="number" disabled="disabled" name="latitude" placeholder="acquiring latitude..." required></p>
-
       <p> Free WiFi: <input type="checkbox" name="Wifi"></p>
-
       <p> Coffee: <input type="checkbox" name="coffee"></p>
-
       <p> Snacks: <input type="checkbox" name="snacks"></p>
-
       <p> Tables: <input type="checkbox" name="tables"></p>
-
       <p> Bathroom: <input type="checkbox" name="bathroom"></p>
-
       <p> Outlets: <input type="checkbox" name="outlets"></p>
-
       <p> Noisy: <input type="checkbox" name="noisy"></p>
 
       <input type="submit" name="submit" value="Submit">
@@ -51,4 +44,3 @@ function setPosition(position) {
 
   {{/content}}
 {{/layout}}
-

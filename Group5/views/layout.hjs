@@ -38,6 +38,7 @@
             {{#user}}
               <li role="presentation"><a href="/users/profile">Profile</a></li>
               <li role="presentation"><a href="/users/logout">Logout</a></li>
+              <li role="presentation"><a href="/reviews">Reviews</a></li>
             {{/user}}
             {{^user}}
               <li role="presentation"><a href="/users/login">Login</a></li>
