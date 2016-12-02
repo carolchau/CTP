@@ -7,7 +7,7 @@
 <script>
 function initMap() {
 
-  //render map with current location marker
+  //render map with current location marker and proximity radius
   var myLatLng = {lat: 40.7541, lng: -73.9934};
 
   var map = new google.maps.Map(document.getElementById('map'), {
@@ -20,6 +20,13 @@ function initMap() {
     map: map,
     title: 'Wework',
     icon: '/images/currentLoc.png'
+  });
+
+  var proximity = new google.maps.Circle({
+    fillColor: '#FF0000',
+    map: map,
+    center: myLatLng,
+    radius: 300
   });
 
   //render locations within a certain proximity of current location
